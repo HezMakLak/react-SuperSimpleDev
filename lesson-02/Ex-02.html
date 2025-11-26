@@ -13,10 +13,10 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-        function App() {
+
+        function LoginForm() {
             return (
                 <>
-                    <p>Hello, welcome to my app!</p>
                     <div>
                         <input type="text" placeholder="Email" />
                     </div>
@@ -25,6 +25,15 @@
                     </div>
                     <button>Login</button>
                     <button>Sign Up</button>
+                </>
+            );
+        }
+
+        function App() {
+            return (
+                <>
+                    <p>Hello, welcome to my app!</p>
+                    <LoginForm />
                 </>
             );
         }
