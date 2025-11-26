@@ -14,26 +14,22 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-        function LoginForm() {
-            return (
+        function ProductDetails ({name, price}) {
+            return(
                 <>
-                    <div>
-                        <input type="text" placeholder="Email" />
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Password" />
-                    </div>
-                    <button>Login</button>
-                    <button>Sign Up</button>
+                    <p>{name}</p>
+                    <p>Price: ${price}</p>
+                    <button>Add to Cart</button>
                 </>
-            );
+            )
         }
 
-        function App() {
-            return (
+        function App(){
+            return(
                 <>
-                    <p>Hello, welcome to my app!</p>
-                    <LoginForm />
+                    <ProductDetails name="Cotton socks" price="$10.90" />
+                    <ProductDetails name="Tennis balls" price="$6.00" />
+                    <ProductDetails name="Plain T-shirt" price="$7.90" />
                 </>
             );
         }
