@@ -18,11 +18,26 @@
         function ChatInput({ chatMessages, setChatMessages }) {
             const [inputText, setInputText] = React.useState('');
 
+            const [isLoading, setIsLoading] = React.useState(false);
+
             function saveInputText(event) {
                 setInputText(event.target.value);
             }
 
-            function sendMessage() {
+            async function sendMessage() {
+                if (isLoading || inputText === '') {
+                    return;
+                }
+
+                // Set isLoading to true at the start, and set it to
+                // false after everything is done.
+                setIsLoading(true);
+
+
+                // We can put this at the top of the function or
+                // after the first setChatMessages(). Both work.
+                setInputText('');
+
                 const newChatMessages = [
                     ...chatMessages,
                     {
@@ -32,9 +47,19 @@
                     }
                 ];
 
-                setChatMessages(newChatMessages);
+                setChatMessages([
+                    ...newChatMessages,
+                    // This creates a temporary Loading... message.
+                    // Because we don't save this message in newChatMessages,
+                    // it will be remove later, when we add the response.
+                    {
+                        message: 'Loading...',
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
+                ]);
 
-                const response = Chatbot.getResponse(inputText);
+                const response = await Chatbot.getResponseAsync(inputText);
                 setChatMessages([
                     ...newChatMessages,
                     {
@@ -44,7 +69,9 @@
                     }
                 ]);
 
-                setInputText('');
+                // Set isLoading to false after everything is done.
+                setIsLoading(false);
+                
             }
                 function handleKeyDown(event) {
                     if (event.key === 'Enter') {
