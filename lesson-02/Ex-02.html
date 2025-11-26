@@ -14,8 +14,14 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
         function App() {
-            return <p>Hello, welcome to my app!</p>;
-        }    
+            return (
+                <>
+                    <p>Hello, welcome to my app!</p>
+                    <button>Login</button>
+                    <button>Sign Up</button>
+                </>
+            );
+        }
 
         const container = document.querySelector('.js-container');
         ReactDOM.createRoot(container).render(<App />);
