@@ -14,11 +14,19 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-        function App() {
+         function App() {
                 const [inputText, setInputText] = React.useState('');
 
                 function saveInputText(event) {
                     setInputText(event.target.value);
+                }
+
+                function resetInputText() {
+                    setInputText('');
+                }
+
+                function setExampleText() {
+                    setInputText('Alice');
                 }
 
                 return (
@@ -26,7 +34,14 @@
                         <input
                             onChange={saveInputText}
                             placeholder="Type a name here"
+                            value={inputText}
                         />
+                        <button onClick={resetInputText}>
+                            Reset
+                        </button>
+                        <button onClick={setExampleText}>
+                            Example
+                        </button>
                         <p>Hello {inputText}</p>
                     </>
                 )
