@@ -14,11 +14,11 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-        function ProductDetails({ name, price, discountPrice }) {
+        function ProductDetails({ name, price, discountPrice, imgSrc }) {
             return (
-                <>
+                <div>
+                    <img src={imgSrc} width="150" />
                     <p>{name}</p>
-
                     
                     {discountPrice ? (
                         // IF discountPrice EXISTS (truthy) THEN
@@ -32,16 +32,16 @@
                     )}
 
                     <button>Add to Cart</button>
-                </>
-            )
+                </div>
+            );
         }
 
         function App() {
             return (
                 <>
-                    <ProductDetails name="Cotton socks" price="$10.90" discountPrice="$5.00" />
-                    <ProductDetails name="Tennis balls" price="$6.00" />
-                    <ProductDetails name="Plain T-shirt" price="$7.90" />
+                    <ProductDetails name="Cotton socks" price="$10.90" discountPrice="$5.00" imgSrc="cotton-socks.png" />
+                    <ProductDetails name="Tennis balls" price="$6.00" imgSrc="tennis-balls.png" />
+                    <ProductDetails name="Plain T-shirt" price="$7.90" imgSrc="plain-t-shirt.png" />
                 </>
             );
         }
