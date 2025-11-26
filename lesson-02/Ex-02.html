@@ -14,28 +14,30 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-        function ProductDetails ({name, price, discountPrice}) {
-            return(
+        function ProductDetails({ name, price, discountPrice }) {
+            return (
                 <>
                     <p>{name}</p>
 
-                    {/* CONDITION 1: Show regular price ONLY if NO discount */}
-                    {!discountPrice && <p>Price: {price}</p>}
                     
-                    {/* CONDITION 2: Show crossed-out original price IF discount exists */}
-                    {discountPrice && (
-                        <p><del>Price: {price}</del></p>)}
-
-                    {/* CONDITION 3: Show discount price IF discount exists */}
-                    {discountPrice && <p>Discount Price: {discountPrice}</p>}
+                    {discountPrice ? (
+                        // IF discountPrice EXISTS (truthy) THEN
+                        <>
+                            <p><del>Price: ${price}</del></p>
+                            <p>Discount price: ${discountPrice}</p>
+                        </>
+                    ) : (
+                        // IF discountPrice DOES NOT EXIST (falsy) THEN
+                        <p>Price: ${price}</p>
+                    )}
 
                     <button>Add to Cart</button>
                 </>
             )
         }
 
-        function App(){
-            return(
+        function App() {
+            return (
                 <>
                     <ProductDetails name="Cotton socks" price="$10.90" discountPrice="$5.00" />
                     <ProductDetails name="Tennis balls" price="$6.00" />
