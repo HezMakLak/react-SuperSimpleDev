@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>03 Chatbot</title>
+</head>
+
+<body>
+  <div class="js-container"></div>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel">
+    function ChatInput() {
+      return (
+        <>
+          <input placeholder="Send a message to Chatbot" size="30" />
+          <button>Send</button>
+        </>
+      );
+    }
+
+    function ChatMessage({ message: messageOne, sender: senderOne }) {
+      // const messageOne = props.message;
+      // const senderOne = props.sender;
+      // instead of messageOne if the name we gave was message and is the same as after the equal sing like const message = props.message and const sender = props.sender then we can use a shortcut const {message, sender} = props;
+
+      // if (senderOne === "robot") {
+      //     return (
+      //         <div>
+      //             <img src="robot.png" width="50" alt="user"/>
+      //             {messageOne}
+      //         </div>
+      //     )
+      // }
+
+      return (
+        <div>
+          {senderOne === 'robot' && <img src="robot.png" width="50" />}
+          {messageOne}
+          {senderOne === 'user' && <img src="user.png" width="50" />}
+
+        </div>
+      )
+    }
+
+    function App() {
+      return (
+        <>
+          <ChatInput />
+          <ChatMessage message="hello chatbot" sender="user" />
+          <ChatMessage message="Hello! How can i help you?" sender="robot" />
+          <ChatMessage message="Can you get me today's date?" sender="user" />
+          <ChatMessage message="Today is December 26" sender="robot" />
+        </>
+      );
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />);
+  </script>
+</body>
+
+</html>
