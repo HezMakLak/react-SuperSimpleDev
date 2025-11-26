@@ -18,8 +18,17 @@
             return(
                 <>
                     <p>{name}</p>
-                    <p>Price: {price}</p>
-                    <p>Discount Price: {discountPrice}</p>
+
+                    {/* CONDITION 1: Show regular price ONLY if NO discount */}
+                    {!discountPrice && <p>Price: {price}</p>}
+                    
+                    {/* CONDITION 2: Show crossed-out original price IF discount exists */}
+                    {discountPrice && (
+                        <p><del>Price: {price}</del></p>)}
+
+                    {/* CONDITION 3: Show discount price IF discount exists */}
+                    {discountPrice && <p>Discount Price: {discountPrice}</p>}
+
                     <button>Add to Cart</button>
                 </>
             )
